@@ -33,4 +33,11 @@ public class Person {
     @Column(name = "work")
     @Getter @Setter
     private String work;
+
+    public Person(PersonRequest requestBody) {
+        this.age= requestBody.age;
+        this.address = requestBody.address;
+        this.work = requestBody.work;
+        this.name = requestBody.name;
+    }
 }
