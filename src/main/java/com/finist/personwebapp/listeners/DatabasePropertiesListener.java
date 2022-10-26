@@ -11,7 +11,6 @@ import java.util.Properties;
 public class DatabasePropertiesListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
 //    @Override
     public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
-        System.out.println("test log!!!!");
         ConfigurableEnvironment environment = event.getEnvironment();
         Properties props = new Properties();
         String db_url = environment.getProperty("DATABASE_URL");
