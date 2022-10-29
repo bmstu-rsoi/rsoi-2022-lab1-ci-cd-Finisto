@@ -60,4 +60,17 @@ public class PersonController {
         }
     }
 
+    @DeleteMapping("/persons/{personId}")
+    public ResponseEntity<?> deletePersonById(@PathVariable int personId){
+        Optional<Person> optionalPerson = this.persones.findById(personId);
+        if(optionalPerson.isPresent()){
+            Person person = optionalPerson.get();
+            this.persones.delete(person);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204 code
+        }
+        else{
+            return new ResponseEntity<>(new ErrorResponse("Not found Person for ID"), HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
