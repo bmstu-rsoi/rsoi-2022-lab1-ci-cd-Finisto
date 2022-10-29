@@ -28,7 +28,7 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "savenko-personservice"
+          heroku_app_name: "savenko-personservice-2022"
           heroku_email: "finistars@mail.ru"
           usedocker: true
 
