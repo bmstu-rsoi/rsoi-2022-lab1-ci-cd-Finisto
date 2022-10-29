@@ -22,7 +22,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build
-        run: mvn --batch-mode --update-snapshots verify
+        run: mvn -DDATABASE_URL=${{secrets.HEROKU_DATABASE_URL}} --batch-mode --update-snapshots verify
 
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
