@@ -2,20 +2,25 @@ package com.finist.personwebapp.controller;
 
 import com.finist.personwebapp.model.*;
 import com.finist.personwebapp.repository.PersonRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/api/v1")
 public class PersonController {
 
+//    @Autowired
+//    private RestTemplate restTemplate;
+    @Autowired
     private final PersonRepository persones;
 
     public PersonController(PersonRepository persones) {
