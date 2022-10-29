@@ -31,7 +31,7 @@ jobs:
           heroku_app_name: "savenko-personservice-2022"
           heroku_email: "finistars@mail.ru"
           usedocker: true
-          docker_buil_args: |
+          docker_build_args: |
             ARG_DATABASE_URL
         env:
           ARG_DATABASE_URL: ${{secrets.HEROKU_DATABASE_URL}}
