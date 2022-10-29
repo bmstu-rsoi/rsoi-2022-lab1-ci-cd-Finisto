@@ -73,4 +73,32 @@ public class PersonController {
         }
     }
 
+    @PatchMapping("/persons/{personId}")
+    public ResponseEntity<?> updatePersonById(@PathVariable int personId, @RequestBody PersonRequest requestBody){
+        Optional<Person> optionalPerson = this.persones.findById(personId);
+        if(optionalPerson.isPresent()){
+            Person person = optionalPerson.get();
+
+            if(requestBody.age != null){
+                person.setAge(requestBody.age);
+            }
+            if(requestBody.name != null){
+                person.setName(requestBody.name);
+            }
+            if(requestBody.address != null){
+                person.setAddress(requestBody.address);
+            }
+            if(requestBody.work != null){
+                person.setWork(requestBody.work);
+            }
+            Person savedPerson = this.persones.save(person);
+
+            return new ResponseEntity<>(new PersonResponse(savedPerson), HttpStatus.OK);
+
+        }
+        else{
+            return new ResponseEntity<>(new ErrorResponse("Not found Person for ID"), HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
