@@ -1,21 +1,16 @@
 package com.finist.personwebapp.controller;
 
-import com.finist.personwebapp.model.Person;
-import com.finist.personwebapp.model.PersonRequest;
-import com.finist.personwebapp.model.PersonResponse;
-import com.finist.personwebapp.model.ValidationErrorResponse;
+import com.finist.personwebapp.model.*;
 import com.finist.personwebapp.repository.PersonRepository;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/api/v1")
@@ -51,6 +46,18 @@ public class PersonController {
                     ex.getMessage())), HttpStatus.BAD_REQUEST);
         }
 
+    }
+
+    @GetMapping("/persons/{personId}")
+    public ResponseEntity<?> getPersonById(@PathVariable int personId){
+        Optional<Person> optionalPerson = this.persones.findById(personId);
+        if(optionalPerson.isPresent()){
+            Person person = optionalPerson.get();
+            return new ResponseEntity<>(new PersonResponse(person), HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(new ErrorResponse("Not found Person for ID"), HttpStatus.NOT_FOUND);
+        }
     }
 
 }

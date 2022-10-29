@@ -3,12 +3,13 @@ package com.finist.personwebapp.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ValidationErrorResponse {
-    public String message;
+public class ValidationErrorResponse extends ErrorResponse{
+//    public String message;
     public Map<String, String> errors;
 
     public ValidationErrorResponse(String message) {
-        this.message = message;
+        super(message);
+//        this.message = message;
         errors = new HashMap<>();
     }
     public ValidationErrorResponse addError(String key, String value){
